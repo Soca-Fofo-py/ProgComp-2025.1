@@ -40,7 +40,6 @@ segredos = [palavras[random.randint(0,len(palavras)-1)]]
 impedir_repiticao.remove(segredos[0])
 
 segredos += [palavras[random.randint(0,len(palavras)-1)]]
-
 ##### CRIA UMA COPIA PARA A VARIAVEL segredos PARA A COPARACAO #####
 segredos_copia = segredos.copy()
 
@@ -49,11 +48,11 @@ nao_pertence = []
 
 while tentativas < 7 and len(segredos_copia) != 0:
     ##### IMEPEDE A ENETRADA DE NUMEROS #####
-    print(segredos[0],segredos[1])
     try:
         chute = input('dig:').upper()
+        print(chute)
         teste = int(chute)
-        print('apenas letras sao validas') 
+        print('apenas letras sao validas')
     except:
         letras = ''
         if len(chute) == 5 and chute in palavras:
@@ -84,11 +83,11 @@ while tentativas < 7 and len(segredos_copia) != 0:
         ##### IMEPDE PALAVRAS QUE NAO SAO VALIDAS #####
         if chute not in palavras and len(chute) == 5:
             print('essa palavra não é valida')
-            ##### DEIXA DE EXIBIR PALAVRAS QUE JA FORAM DESCOBERTAS ####
+        ##### DEIXA DE EXIBIR PALAVRAS QUE JA FORAM DESCOBERTAS ####
         if chute in segredos_copia:
             segredos_copia.remove(chute)    
 ##### EXIBE O SEU DESEMPENHO NO JOGO #####
-if len(segredos) == 0:
+if len(segredos_copia) == 0:
     print(desempenho[tentativas])
 else:
-    print(f'palavras: {segredos[0]},{segredos[1]}')
+    print(f'palavras: {segredos[0]}, {segredos[1]}')
