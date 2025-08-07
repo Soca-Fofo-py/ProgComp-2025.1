@@ -166,7 +166,7 @@ if opcao == 7: # g
         try:
             nome_arquivo = input('qual vai ser o nome do arquivo:')
             arquivo = open(nome_arquivo, 'r')
-            arquivo.close
+            arquivo.close()
             print('esse arquivo ja exite!!!')
         except FileNotFoundError:
             arquivo = open(nome_arquivo, "w")
@@ -208,4 +208,5 @@ t = json.dumps(d)         #Converte dicionário em texto
 
 '''
 ################################################
+
 
