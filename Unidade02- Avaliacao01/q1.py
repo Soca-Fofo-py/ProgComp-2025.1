@@ -168,11 +168,6 @@ if opcao == 7: # g
             arquivo = open(nome_arquivo, 'r')
             arquivo.close
             print('esse arquivo ja exite!!!')
-            #decisao = input('esse arquivo ja esta exite deseja apagar tudo oque tem nele?\n' +
-            #      '1 - sim\n' +
-            #      '2 - nao\n')
-            #if decisao == 1:
-            #    fd = open (arquivo, "w")
         except FileNotFoundError:
             arquivo = open(nome_arquivo, "w")
             for a in tabela_cpf_mac.keys:
@@ -182,9 +177,10 @@ if opcao == 7: # g
             print('houve algum erro tente novamente')
 ###################################################################################################################
 ###################################################################################################################
+organizar = [] 
 if opcao == 8: # h
     try:
-        fd = open(input(''),'r')
+        fd = open(input('digite o nome do arquivo:'),'r')
         ##### TIRA OS ESPACOS #####
         arquivo = (fd.read()).split()
         for dados in arquivo:
@@ -212,3 +208,4 @@ t = json.dumps(d)         #Converte dicionário em texto
 
 '''
 ################################################
+
