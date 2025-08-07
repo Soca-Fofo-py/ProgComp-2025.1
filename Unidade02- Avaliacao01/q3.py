@@ -1,4 +1,3 @@
-#Vinicius
 import random
            ##### LISTA DE PALAVRAS ACEITAS #####
 palavras = ["ADAGA", "ADUBO", "AMIGO", "ANEXO", "ARAME", "ARARA", "ARROZ",
