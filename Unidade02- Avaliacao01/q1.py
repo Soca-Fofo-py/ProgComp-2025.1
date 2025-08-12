@@ -30,7 +30,18 @@ while True:
                     f"{'8':^6s} : ler o “banco de dados” de um arquivo\n" + 
                     f"{'0':^6s} : Finaliza o programa\n\n" + "Digite o código da ação que deseja realizar: "
                     )
-        return int (input("Selecione sua opcao: "))
+        try:
+            decisao = int (input("Selecione sua opcao: "))
+            print(decisao)
+            if 0 > decisao > 8:
+                print('escolha uma das opcoes acima pfv!!!')
+            else:
+                return decisao 
+        except ValueError:
+            print('escolha uma das opcoes acima pfv!!!')
+        except:
+            print('houve alguma erro tente novamente') 
+                
     ###################################################################################################################
     ###################################################################################################################
     # Função de verificação de MAC Address!
@@ -62,23 +73,28 @@ while True:
     # Cadastra um CPF!
     if opcao == 1: # a
         print("Cadastrar um CPF!\n")
-        var_1= input("Digite o CPF a qual deseja cadastrar: ")
-        if cpf.cpf_valido(var_1) == True:
+        var_1 = input("Digite o CPF a qual deseja cadastrar: ")
+        if cpf.cpf_valido(var_1) and var_1 not in tabela_cpf_mac.keys():
             #
             # This method adds a key with a specified default value if the key is not already present in the dictionary.
             tabela_cpf_mac.setdefault(var_1,[])
         else:
-            print("CPF Inválido!")
+            if not cpf.cpf_valido(var_1):
+                print("CPF Inválido!")
+            if var_1 in tabela_cpf_mac.keys():
+                print('esse cpf ja foi registrado!!!')
     ###################################################################################################################
     ###################################################################################################################
     # Adicionar MAC address a um CPF!
     if opcao == 2:  # b
         print("Adicionar MAC address a um CPF!\n")
-        var_3 = input("Digite a qual CPF deseja cadastrar um endereço MAC: ")
-        if cpf.cpf_valido(var_3) == True:
-            if (var_3) in tabela_cpf_mac.keys():
+        if len(tabela_cpf_mac) == 0:
+            print('nao ha CPFs cadastrados!!')
+        else:
+            var_3 = input("Digite a qual CPF deseja cadastrar um endereço MAC: ")
+            if cpf.cpf_valido(var_3) and (var_3) in tabela_cpf_mac.keys():
                 var_4 = input("Digite o endereço MAC que deseja cadastrar: ")
-                if check_mac(var_4) == True:
+                if check_mac(var_4):
                     lista_temp = [] # lista vazia
                     lista_temp = tabela_cpf_mac[var_3] # lista recebe valor da chave cpf
                     #print("temp",lista_temp,type(var_3),type(lista_temp)) ############# # testes
@@ -87,11 +103,15 @@ while True:
                     tabela_cpf_mac[var_3] = lista_temp #???????????????????????
                     #print("temp",tabela_cpf_mac[var_3],456) # testes
                 else:
-                    print("O endereço MAC que deseja cadastrar é inválido!")
+                    print('esse MAC adderess nao eh valido')
             else:
-                print("O CPF informado não está cadastrado!")
-        else:
-            print("CPF Inválido!")       
+                if not cpf.cpf_valido(var_3):
+                    print("CPF invalido!!")
+                if len(tabela_cpf_mac) == 0:
+                    print('nao ha CPFs cadastrados no momento')
+                
+        
+        #print("CPF Inválido!")       
     ###################################################################################################################
     ###################################################################################################################
     if opcao == 3:  # c
